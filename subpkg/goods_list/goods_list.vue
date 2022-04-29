@@ -1,6 +1,6 @@
 <template>
 	<view>
-		list
+		{{params}}
 	</view>
 </template>
 
@@ -8,8 +8,12 @@
 	export default {
 		data() {
 			return {
-				
+				params: {}
 			};
+		},
+		onLoad(option){
+			console.log(option)
+			this.params = option
 		}
 	}
 </script>
