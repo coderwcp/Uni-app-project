@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<my-search @click="gotoSearch"></my-search>
 		<view class="scroll-container" :style="{ height: vh + 'px' }">
 			<scroll-view class="scroll-left" scroll-y>
 				<view :class="{ active: active === index }" class="left-item" @click="item1Click(index)" v-for="(item1, index) in cateList" :key="item1.cat_id">{{ item1.cat_name }}</view>
@@ -32,8 +33,8 @@ export default {
 	},
 	async onLoad() {
 		const sysInfo = await uni.getSystemInfo();
-		// 获取视口的高度 = 屏幕高度 - nav高度 - tab高度
-		this.vh = sysInfo[1].windowHeight;
+		// 获取视口的高度 = 屏幕高度 - nav高度 - tab高度 - 头部搜索高度
+		this.vh = sysInfo[1].windowHeight - 50;
 		this.getCateList();
 	},
 	methods: {
@@ -51,6 +52,12 @@ export default {
 		gotoGoodsList(item){
 			uni.navigateTo({
 				url:'/subpkg/goods_list/goods_list?cid='+ item.cat_id
+			})
+		},
+		// 跳转到分包中的search页面
+		gotoSearch() {
+			uni.navigateTo({
+				url: '/subpkg/search/search'
 			})
 		}
 	}
