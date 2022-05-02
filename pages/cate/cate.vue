@@ -69,7 +69,6 @@ export default {
 	display: flex;
 	background-color: #fff;
 	.scroll-left {
-		background-color: pink;
 		width: 120px;
 		border-right: 2px solid #eee;
 		.left-item {

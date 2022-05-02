@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="goods-list">
-			<view v-for="(goods,index) in goodsList" :key="index" @click="gotoDetail(item)">
+			<view v-for="(goods,index) in goodsList" :key="index" @click="gotoDetail(goods)">
 				<my-goods :goods="goods"></my-goods>
 			</view>
 		</view>
