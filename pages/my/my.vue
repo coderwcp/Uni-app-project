@@ -1,19 +1,16 @@
 <template>
-	<view>
-		
-	</view>
+	<view></view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			};
-		}
+import badgeMixin from '@/mixin/tabbar-badge.js';
+export default {
+	// 将 badgeMix 混入到当前的页面中进行使用
+	mixins: [badgeMixin],
+	data() {
+		return {};
 	}
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

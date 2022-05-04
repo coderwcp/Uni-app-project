@@ -23,7 +23,7 @@
 					</view>
 				</view>
 				<!-- 运费 -->
-				<view class="yf">快递：免运费</view>
+				<view class="yf">快递：免运费 -- {{cart.length}}</view>
 			</view>
 	
 			<!-- 商品详情信息 -->
@@ -41,7 +41,8 @@
 </template>
 
 <script>
-	export default {
+	import { mapState, mapActions, mapGetters } from 'vuex'
+ 	export default {
 		data() {
 			return {
 				// 商品信息
@@ -53,7 +54,7 @@
 				}, {
 					icon: 'cart',
 					text: '购物车',
-					info: 2
+					info: 0
 				}],
 				// 右侧按钮组的配置对象
 				buttonGroup: [{
@@ -97,6 +98,37 @@
 						url: '/pages/cart/cart'
 					})
 				}
+			},
+			...mapActions('m_cart', ['addToCart']),
+			buttonClick(e) {
+				if(e.content.text === '加入购物车') {
+					const goods = {
+						goods_id: this.goods_info.goods_id,
+						goods_name: this.goods_info.goods_name,
+						goods_price: this.goods_info.goods_price,
+						goods_count: 1,
+						goods_small_logo: this.goods_info.goods_small_logo,
+						goods_state: true
+					}
+					
+					// 通过 this 调用映射过来的 addToCart 方法，把商品信息对象存储到购物车中
+					this.addToCart(goods)
+				}
+			}
+		},
+		computed: {
+			// ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+			...mapState('m_cart', ['cart']),
+			...mapGetters('m_cart', ['total'])
+		},
+		watch:{
+			// 监听 total 的变化(需要页面一加载则监听)
+			total:{
+				handler(newValue) {
+					const findResult = this.options.find(t => t.text === '购物车')
+					findResult && (findResult.info = newValue)
+				},
+				immediate: true
 			}
 		}
 	}

@@ -1,13 +1,16 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
+import store from './store/store.js'
 
 Vue.config.productionTip = false
 
 App.mpType = 'app'
 
 const app = new Vue({
-	...App
+	...App,
+	// 将 store 挂载到 Vue 实例上
+	store
 })
 app.$mount()
 // #endif

@@ -21,7 +21,10 @@
 </template>
 
 <script>
+import badgeMixin from '@/mixin/tabbar-badge.js';
 export default {
+	// 将 badgeMix 混入到当前的页面中进行使用
+	mixins: [badgeMixin],
 	data() {
 		return {
 			vh: 0,
@@ -49,16 +52,16 @@ export default {
 			this.cateChildren = this.cateList[index].children;
 			this.scrollTop = this.scrollTop ? 0 : 1;
 		},
-		gotoGoodsList(item){
+		gotoGoodsList(item) {
 			uni.navigateTo({
-				url:'/subpkg/goods_list/goods_list?cid='+ item.cat_id
-			})
+				url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
+			});
 		},
 		// 跳转到分包中的search页面
 		gotoSearch() {
 			uni.navigateTo({
 				url: '/subpkg/search/search'
-			})
+			});
 		}
 	}
 };

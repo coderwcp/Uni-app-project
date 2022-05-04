@@ -35,7 +35,7 @@
 						<!-- v-if="i2 !== 0" 因为第一张图片占两行，单独处理了，这里循环后面的 -->
 						<navigator class="right-img-item" :url="item2.url" v-for="(item2, i2) in item.product_list" :key="i2" v-if="i2 !== 0">
 							<image :src="item2.image_src" mode="widthFix" :style="{ width: item2.image_width + 'rpx' }"></image>
-				  </navigator>
+						</navigator>
 					</view>
 				</view>
 			</view>
@@ -44,8 +44,11 @@
 </template>
 
 <script>
+import badgeMixin from '@/mixin/tabbar-badge.js';
 export default {
+	// 将 badgeMix 混入到当前的页面中进行使用
 	name: 'HomePage',
+	mixins: [badgeMixin],
 	data() {
 		return {
 			swiperList: [],
@@ -91,18 +94,18 @@ export default {
 		gotoSearch() {
 			uni.navigateTo({
 				url: '/subpkg/search/search'
-			})
+			});
 		}
 	}
 };
 </script>
 
 <style lang="scss">
-	.search-box {
-		position: sticky;
-		top: 0;
-		z-index: 999;
-	}
+.search-box {
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
 swiper {
 	height: 330rpx;
 	.swiper-item,
